@@ -28,21 +28,23 @@ public class LoginSteps extends CommonMethods {
     public void admin_user_is_successfully_logged_in() {
         DashboardPage dash=new DashboardPage();
         Assert.assertTrue(dash.welcomeMessage.isDisplayed());
+
+
     }
 
     @When("user enters valid ess username and password")
     public void user_enters_valid_ess_username_and_password() {
         LoginPage login=new LoginPage();
-        sendText(login.usernameBox, ConfigReader.getPropertyValue("aleshka987"));
-        sendText(login.passwordBox, ConfigReader.getPropertyValue("Syntax123!!!"));
+        sendText(login.usernameBox, "aleshka987");
+        sendText(login.passwordBox, "Syntax123!!!");
     }
 
     @When("user enters valid username and invalid password")
     public void user_enters_valid_username_and_invalid_password() {
         LoginPage login=new LoginPage();
-        sendText(login.usernameBox, ConfigReader.getPropertyValue("aleshka987"));
-        sendText(login.passwordBox, ConfigReader.getPropertyValue("Syntax123!!"));
-        click(login.loginBtn);
+        sendText(login.usernameBox, "aleshka987");
+        sendText(login.passwordBox, "Syntax123!!");
+
     }
 
     @Then("user see invalid credentials message on login page")

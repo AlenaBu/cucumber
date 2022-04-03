@@ -3,10 +3,14 @@ package steps;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.junit.Assert;
 import pages.AddEmployeePage;
 import pages.DashboardPage;
 import utils.CommonMethods;
+import utils.Constants;
+import utils.ExelReading;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -99,4 +103,24 @@ public class AddEmployeeSteps extends CommonMethods {
 
         }
     }
-}
+    @When("user adds multiple employees from exel file using {string} sheet and verify the added employee")
+    public void user_adds_multiple_employees_from_exel_file_using_sheet_and_verify_the_added_employee (String sheetName) {
+
+        List<Map<String,String>> newEmployees= ExelReading.excelIntoListMap(Constants.TESTDATA_FILEPATH, sheetName);
+        DashboardPage dash=new DashboardPage();
+        AddEmployeePage add=new AddEmployeePage();
+
+        Iterator<Map<String,String>> it= newEmployees.iterator();
+        while(it.hasNext()){
+            Map<String,String> mapNewEmp=it.next();
+            sendText(add.firstName, mapNewEmp.get("FirstName"));
+            sendText(add.middleName, mapNewEmp.get("MiddleName"));
+            sendText(add.lastName, mapNewEmp.get("LastName"));
+            click(add.saveBtn);
+            click(dash.addEmployeeButton);
+            //assertion
+
+            click(dash.addEmployeeButton);
+
+    }
+}}

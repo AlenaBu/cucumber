@@ -1,0 +1,15 @@
+/Users/lenka/hrms/src/test/java/runners/Regression.java
+/Users/lenka/hrms/src/test/java/pages/DashboardPage.java
+/Users/lenka/hrms/src/test/java/pages/AddEmployeePage.java
+/Users/lenka/hrms/src/test/java/pages/EmployeeListPage.java
+/Users/lenka/hrms/src/test/java/steps/Hooks.java
+/Users/lenka/hrms/src/test/java/utils/ExelReading.java
+/Users/lenka/hrms/src/test/java/steps/AddEmployeeSteps.java
+/Users/lenka/hrms/src/test/java/utils/CommonMethods.java
+/Users/lenka/hrms/src/test/java/pages/LoginPage.java
+/Users/lenka/hrms/src/test/java/utils/Constants.java
+/Users/lenka/hrms/src/test/java/steps/DashboardSteps.java
+/Users/lenka/hrms/src/test/java/runners/Smoke.java
+/Users/lenka/hrms/src/test/java/utils/ConfigReader.java
+/Users/lenka/hrms/src/test/java/steps/EmployeeSearchSteps.java
+/Users/lenka/hrms/src/test/java/steps/LoginSteps.java

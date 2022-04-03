@@ -13,13 +13,16 @@ import org.junit.runner.RunWith;
         //if we set dryRun to true, then no actual execution happens, it will quickly scan all gherkin steps if they have implementation or not
         dryRun = false,
         //it keeps console output for the cucumber test easily readable, it will remove all unreadable character
-        monochrome = false,
-        tags = "@datatable"
-
+        monochrome = true,
+        tags = "@error",
+        //pretty- prints all the steps in console
+        //plugin we use it to generate report for execution
+        plugin = {"pretty","html:target/cucumber.html", "json:target/cucumber.json", "rerun:target/failed.txt"}
         //strict =true, it checks all the step definition
+
 
 )
 
 
-public class TestRunner {
+public class Smoke {
 }

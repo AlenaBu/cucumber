@@ -1,5 +1,6 @@
 package steps;
 
+import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
@@ -7,6 +8,9 @@ import pages.DashboardPage;
 import pages.LoginPage;
 import utils.CommonMethods;
 import utils.ConfigReader;
+
+import java.util.List;
+import java.util.Map;
 
 public class LoginSteps extends CommonMethods {
     @When("user enters valid admin username and password")
@@ -53,5 +57,33 @@ public class LoginSteps extends CommonMethods {
         Assert.assertTrue(login.errorMessage.isDisplayed());
     }
 
+    @When("user enters invalid credentials and clicks on login and verify the error")
+    public void user_enters_invalid_credentials_and_clicks_on_login_and_verify_the_error(DataTable errorValidation) {
+        List<Map<String,String>> errorData=errorValidation.asMaps();
 
+        for(Map<String,String> validation:errorData){
+            String usernameValue= validation.get("username");
+            String passwordValue= validation.get("password");
+            String errorMessageValue= validation.get("errorMessage");
+
+            LoginPage login=new LoginPage();
+            sendText(login.usernameBox, usernameValue);
+            sendText(login.passwordBox, passwordValue);
+            click(login.loginBtn);
+
+            String errorMessageActual=login.errorMessage.getText();
+            Assert.assertEquals("Values do not match", errorMessageActual, errorMessageValue);
+        }
+    }
+
+    @When("user enters invalid {string} and {string} and clicks on login and verify the {string}")
+    public void user_enters_invalid_and_and_clicks_on_login_and_verify_the(String username, String password, String errorMessage) {
+        LoginPage login=new LoginPage();
+        sendText(login.usernameBox, username);
+        sendText(login.passwordBox, password);
+        click(login.loginBtn);
+
+        String errorMessageActual=login.errorMessage.getText();
+        Assert.assertEquals("Values do not match", errorMessageActual, errorMessage);
+    }
 }
